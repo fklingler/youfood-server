@@ -1,0 +1,9 @@
+class Table
+  include Mongoid::Document
+
+  field :number, type: Integer
+
+  belongs_to :zone
+  belongs_to :device
+  has_many :seats
+end
