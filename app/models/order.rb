@@ -1,7 +1,7 @@
 class Order
   include Mongoid::Document
 
-  field :deliverd, type: Boolean
+  field :delivered, type: Boolean
   field :paid, type: Boolean
 
   belongs_to :table
