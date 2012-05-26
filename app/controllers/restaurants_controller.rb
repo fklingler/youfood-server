@@ -8,7 +8,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find_by_slug(params[:id])
 
     respond_with @restaurant
   end
@@ -20,7 +20,7 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find_by_slug(params[:id])
 
     respond_with @restaurant
   end
@@ -36,7 +36,7 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find_by_slug(params[:id])
 
     if @restaurant.update_attributes(params[:restaurant])
       flash[:notice] = "Successfully updated restaurant."  
@@ -46,7 +46,7 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find_by_slug(params[:id])
     @restaurant.destroy
 
     flash[:notice] = "Successfully destroyed restaurant."

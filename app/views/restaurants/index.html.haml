@@ -12,7 +12,7 @@
       %tr
         %td= link_to restaurant.name, restaurant_path(restaurant)
         %td= restaurant.address
-        %td= restaurant.menu.name if restaurant.menu
+        %td= link_to restaurant.menu.name, menu_path(restaurant.menu) if restaurant.menu
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_restaurant_path(restaurant), :class => 'btn btn-mini'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), restaurant_path(restaurant), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'

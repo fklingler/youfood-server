@@ -17,6 +17,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails'
+  gem 'jquery-ui-rails'
 end
 
 gem 'jquery-rails'
@@ -37,6 +38,8 @@ gem 'simple_form'
 
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
+
+gem "mongoid_slug"
 
 group :development do
   gem "debugger"

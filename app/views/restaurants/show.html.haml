@@ -5,14 +5,17 @@
   %strong= model_class.human_attribute_name(:name) + ':'
   %br
   = @restaurant.name
+
 %p
   %strong= model_class.human_attribute_name(:address) + ':'
   %br
   = @restaurant.address
-%p
-  %strong= model_class.human_attribute_name(:menu_id) + ':'
-  %br
-  = @restaurant.menu_id
+
+- if @restaurant.menu
+  %p
+    %strong= model_class.human_attribute_name(:menu) + ':'
+    %br
+    = link_to @restaurant.menu.name, menu_path(@restaurant.menu)
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), restaurants_path, :class => 'btn'

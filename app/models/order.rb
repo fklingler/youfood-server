@@ -4,7 +4,7 @@ class Order
   field :deliverd, type: Boolean
   field :paid, type: Boolean
 
-  belongs_to :seat
+  belongs_to :table
   has_and_belongs_to_many :products
   belongs_to :orderer, polymorphic: true
 end

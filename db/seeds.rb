@@ -16,3 +16,5 @@ zone3 = restaurant.zones.create()
 table1 = zone1.tables.create(number: 1)
 table2 = zone1.tables.create(number: 2)
 table3 = zone1.tables.create(number: 3)
+
+menu = Menu.create(name: 'Test menu', begin_date: DateTime.now, end_date: DateTime.now+3)

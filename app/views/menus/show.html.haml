@@ -1,0 +1,20 @@
+- model_class = @menu.class
+%h1=t '.title', :default => model_class.model_name.human
+
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
+  = @menu.name
+%p
+  %strong= model_class.human_attribute_name(:begin_date) + ':'
+  %br
+  = @menu.begin_date
+%p
+  %strong= model_class.human_attribute_name(:end_date) + ':'
+  %br
+  = @menu.end_date
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), menus_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_menu_path(@menu), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), menu_path(@menu), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'
