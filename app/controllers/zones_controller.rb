@@ -2,10 +2,10 @@ class ZonesController < ApplicationController
   respond_to :html
 
   def index
-    restaurant = Restaurant.find_by_slug(params[:restaurant_id])
-    @zones = restaurant.zones
+    @restaurant = Restaurant.find_by_slug(params[:restaurant_id])
+    @zones = @restaurant.zones
 
-    respond_with restaurant, @zones
+    respond_with @restaurant, @zones
   end
 
   def show
@@ -15,9 +15,9 @@ class ZonesController < ApplicationController
   end
 
   def new
-    @zone = Zone.new
+    @zone = Restaurant.find_by_slug(params[:restaurant_id]).zones.new
 
-    respond_with @zone.restaurant,@zone
+    respond_with @zone.restaurant, @zone
   end
 
   def edit
@@ -27,7 +27,7 @@ class ZonesController < ApplicationController
   end
 
   def create
-    @zone = Restaurant.find_by_slug(params[:restaurant_id]).new_zone(params[:zone])
+    @zone = Restaurant.find_by_slug(params[:restaurant_id]).zones.new(params[:zone])
 
     if @zone.save  
       flash[:notice] = "Successfully created zone."  

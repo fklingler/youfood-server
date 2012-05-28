@@ -1,10 +1,14 @@
 Server::Application.routes.draw do
+  root :to => 'restaurants#index'
+
   resources :restaurants do
-    resources :zones do
-      resources :tables
-    end
+    resources :zones
+    resources :tables
   end
+
   resources :menus
+  resources :product_types
+  resources :products
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

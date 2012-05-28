@@ -1,0 +1,16 @@
+- model_class = Table
+%h1!=t '.title', :default => model_class.model_name.human.pluralize + ' of ' + link_to(@restaurant.name, restaurant_path(@restaurant))
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:number)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @tables.each do |table|
+      %tr
+        %td= link_to table.number, restaurant_table_path(table.restaurant, table)
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_restaurant_table_path(table.restaurant, table), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), restaurant_table_path(table.restaurant, table), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
+
+= link_to t('.new', :default => t("helpers.links.new")), new_restaurant_table_path, :class => 'btn btn-primary'

@@ -4,9 +4,10 @@ class Table
 
   field :number, type: Integer
 
+  belongs_to :restaurant
   belongs_to :zone
   belongs_to :device
   has_many :orders
 
-  slug :number, :scope => :zone
+  slug :number, :scope => :restaurant
 end

@@ -1,5 +1,5 @@
 - model_class = Zone
-%h1=t '.title', :default => model_class.model_name.human.pluralize
+%h1!=t '.title', :default => model_class.model_name.human.pluralize + ' of ' + link_to(@restaurant.name, restaurant_path(@restaurant))
 %table.table.table-striped
   %thead
     %tr

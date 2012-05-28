@@ -5,14 +5,6 @@
   %strong= model_class.human_attribute_name(:name) + ':'
   %br
   = @menu.name
-%p
-  %strong= model_class.human_attribute_name(:begin_date) + ':'
-  %br
-  = @menu.begin_date
-%p
-  %strong= model_class.human_attribute_name(:end_date) + ':'
-  %br
-  = @menu.end_date
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), menus_path, :class => 'btn'

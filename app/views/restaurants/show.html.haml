@@ -16,8 +16,18 @@
     %strong= model_class.human_attribute_name(:menu) + ':'
     %br
     = link_to @restaurant.menu.name, menu_path(@restaurant.menu)
+  %p
+    %strong= model_class.human_attribute_name(:menu_begin_date) + ':'
+    %br
+    = @restaurant.menu_begin_date
+  %p
+    %strong= model_class.human_attribute_name(:menu_end_date) + ':'
+    %br
+    = @restaurant.menu_end_date
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), restaurants_path, :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_restaurant_path(@restaurant), :class => 'btn'
+  = link_to t('.edit_zones', :default => t("helpers.links.edit_zones")), restaurant_zones_path(@restaurant), :class => 'btn'
+  = link_to t('.edit_tables', :default => t("helpers.links.edit_tables")), restaurant_tables_path(@restaurant), :class => 'btn'
   = link_to t('.destroy', :default => t("helpers.links.destroy")), restaurant_path(@restaurant), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'

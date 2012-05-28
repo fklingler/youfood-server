@@ -1,0 +1,12 @@
+- model_class = @table.class
+%h1=t '.title', :default => model_class.model_name.human
+
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
+  = @table.number
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), restaurant_tables_path(@table.restaurant), :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_restaurant_table_path(@table.restaurant, @table), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), restaurant_table_path(@table.restaurant, @table), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'
