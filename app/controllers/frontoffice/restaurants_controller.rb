@@ -2,25 +2,25 @@ class Frontoffice::RestaurantsController < Frontoffice::FrontofficeController
   def index
     @restaurants = Restaurant.all
 
-    respond_with @restaurants
+    respond_with :frontoffice, @restaurants
   end
 
   def show
     @restaurant = Restaurant.find_by_slug(params[:id])
 
-    respond_with @restaurant
+    respond_with :frontoffice, @restaurant
   end
 
   def new
     @restaurant = Restaurant.new
 
-    respond_with @restaurant
+    respond_with :frontoffice, @restaurant
   end
 
   def edit
     @restaurant = Restaurant.find_by_slug(params[:id])
 
-    respond_with @restaurant
+    respond_with :frontoffice, @restaurant
   end
 
   def create
@@ -30,7 +30,7 @@ class Frontoffice::RestaurantsController < Frontoffice::FrontofficeController
       flash[:notice] = "Successfully created restaurant."  
     end 
 
-    respond_with @restaurant
+    respond_with :frontoffice, @restaurant
   end
 
   def update
@@ -40,7 +40,7 @@ class Frontoffice::RestaurantsController < Frontoffice::FrontofficeController
       flash[:notice] = "Successfully updated restaurant."  
     end
 
-    respond_with @restaurant
+    respond_with :frontoffice, @restaurant
   end
 
   def destroy
@@ -49,6 +49,6 @@ class Frontoffice::RestaurantsController < Frontoffice::FrontofficeController
 
     flash[:notice] = "Successfully destroyed restaurant."
 
-    respond_with @restaurant
+    respond_with :frontoffice, @restaurant
   end
 end

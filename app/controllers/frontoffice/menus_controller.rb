@@ -2,25 +2,25 @@ class Frontoffice::MenusController < Frontoffice::FrontofficeController
   def index
     @menus = Menu.all
 
-    respond_with @menus
+    respond_with :frontoffice, @menus
   end
 
   def show
     @menu = Menu.find_by_slug(params[:id])
 
-    respond_with @menu
+    respond_with :frontoffice, @menu
   end
 
   def new
     @menu = Menu.new
 
-    respond_with @menu
+    respond_with :frontoffice, @menu
   end
 
   def edit
     @menu = Menu.find_by_slug(params[:id])
 
-    respond_with @menu
+    respond_with :frontoffice, @menu
   end
 
   def create
@@ -30,7 +30,7 @@ class Frontoffice::MenusController < Frontoffice::FrontofficeController
       flash[:notice] = "Successfully created menu."  
     end 
 
-    respond_with @menu
+    respond_with :frontoffice, @menu
   end
 
   def update
@@ -40,7 +40,7 @@ class Frontoffice::MenusController < Frontoffice::FrontofficeController
       flash[:notice] = "Successfully updated menu."  
     end
 
-    respond_with @menu
+    respond_with :frontoffice, @menu
   end
 
   def destroy
@@ -49,6 +49,6 @@ class Frontoffice::MenusController < Frontoffice::FrontofficeController
 
     flash[:notice] = "Successfully destroyed menu."
 
-    respond_with @menu
+    respond_with :frontoffice, @menu
   end
 end

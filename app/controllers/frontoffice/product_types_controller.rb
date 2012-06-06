@@ -2,25 +2,25 @@ class Frontoffice::ProductTypesController < Frontoffice::FrontofficeController
   def index
     @product_types = ProductType.all
 
-    respond_with @product_types
+    respond_with :frontoffice, @product_types
   end
 
   def show
     @product_type = ProductType.find_by_slug(params[:id])
 
-    respond_with @product_type
+    respond_with :frontoffice, @product_type
   end
 
   def new
     @product_type = ProductType.new
 
-    respond_with @product_type
+    respond_with :frontoffice, @product_type
   end
 
   def edit
     @product_type = ProductType.find_by_slug(params[:id])
 
-    respond_with @product_type
+    respond_with :frontoffice, @product_type
   end
 
   def create
@@ -30,7 +30,7 @@ class Frontoffice::ProductTypesController < Frontoffice::FrontofficeController
       flash[:notice] = "Successfully created product type."  
     end 
 
-    respond_with @product_type
+    respond_with :frontoffice, @product_type
   end
 
   def update
@@ -40,7 +40,7 @@ class Frontoffice::ProductTypesController < Frontoffice::FrontofficeController
       flash[:notice] = "Successfully updated product type."  
     end
 
-    respond_with @product_type
+    respond_with :frontoffice, @product_type
   end
 
   def destroy
@@ -49,6 +49,6 @@ class Frontoffice::ProductTypesController < Frontoffice::FrontofficeController
 
     flash[:notice] = "Successfully destroyed product type."
 
-    respond_with @product_type
+    respond_with :frontoffice, @product_type
   end
 end

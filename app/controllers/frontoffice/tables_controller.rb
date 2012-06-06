@@ -3,25 +3,25 @@ class Frontoffice::TablesController < Frontoffice::FrontofficeController
     @restaurant = Restaurant.find_by_slug(params[:restaurant_id])
     @tables = @restaurant.tables
 
-    respond_with @restaurant, @tables
+    respond_with :frontoffice, @restaurant, @tables
   end
 
   def show
     @table = Table.find_by_slug(params[:id])
 
-    respond_with @table.restaurant, @table
+    respond_with :frontoffice, @table.restaurant, @table
   end
 
   def new
     @table = Restaurant.find_by_slug(params[:restaurant_id]).tables.new
 
-    respond_with @table.restaurant, @table
+    respond_with :frontoffice, @table.restaurant, @table
   end
 
   def edit
     @table = Table.find_by_slug(params[:id])
 
-    respond_with @table.restaurant, @table
+    respond_with :frontoffice, @table.restaurant, @table
   end
 
   def create
@@ -31,7 +31,7 @@ class Frontoffice::TablesController < Frontoffice::FrontofficeController
       flash[:notice] = "Successfully created table."  
     end 
 
-    respond_with @table.restaurant, @table
+    respond_with :frontoffice, @table.restaurant, @table
   end
 
   def update
@@ -41,7 +41,7 @@ class Frontoffice::TablesController < Frontoffice::FrontofficeController
       flash[:notice] = "Successfully updated table."  
     end
 
-    respond_with @table.restaurant, @table
+    respond_with :frontoffice, @table.restaurant, @table
   end
 
   def destroy
@@ -50,6 +50,6 @@ class Frontoffice::TablesController < Frontoffice::FrontofficeController
 
     flash[:notice] = "Successfully destroyed table."
 
-    respond_with @table.restaurant, @table
+    respond_with :frontoffice, @table.restaurant, @table
   end
 end
