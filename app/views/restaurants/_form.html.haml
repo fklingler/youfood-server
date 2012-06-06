@@ -1,7 +1,0 @@
-= simple_form_for @restaurant, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :name
-  = f.input :address
-  = f.input :menu, :collection => Menu.all, :selected => (@restaurant.menu.id if @restaurant.menu) unless Menu.empty?
-  = f.input :menu_begin_date, :input_html => { :class => 'date_picker' }
-  = f.input :menu_end_date, :input_html => { :class => 'date_picker' }
-  = f.button :wrapped, :cancel => restaurants_path

@@ -9,4 +9,10 @@ class Menu
 
   slug :name
   validates_presence_of :name
+
+  acts_as_api
+  api_accessible :public do |t|
+    t.add :name
+    t.add :products
+  end
 end

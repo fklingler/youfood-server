@@ -41,6 +41,8 @@ gem "bson_ext", "~> 1.5"
 
 gem "mongoid_slug"
 
+gem "acts_as_api"
+
 group :development do
   gem "debugger"
 end
