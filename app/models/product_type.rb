@@ -7,4 +7,5 @@ class ProductType
   has_many :products
 
   slug :name
+  validates_presence_of :name
 end

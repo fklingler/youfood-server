@@ -12,4 +12,5 @@ class Restaurant
   belongs_to :menu
 
   slug :name
+  validates_presence_of :name
 end

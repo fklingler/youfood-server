@@ -10,4 +10,5 @@ class Table
   has_many :orders
 
   slug :number, :scope => :restaurant
+  validates_presence_of :number
 end

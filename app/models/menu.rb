@@ -8,4 +8,5 @@ class Menu
   has_many :restaurants
 
   slug :name
+  validates_presence_of :name
 end

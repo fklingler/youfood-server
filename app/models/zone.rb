@@ -9,4 +9,5 @@ class Zone
   belongs_to :waiter
 
   slug :name, :scope => :restaurant
+  validates_presence_of :name
 end

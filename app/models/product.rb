@@ -10,4 +10,5 @@ class Product
   has_and_belongs_to_many :orders
 
   slug :name
+  validates_presence_of :name, :price
 end
