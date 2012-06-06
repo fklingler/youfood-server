@@ -6,7 +6,17 @@
   %br
   = @menu.name
 
-.form-actions
+%p
+  %h2= model_class.human_attribute_name(:products)
+  - ProductType.all.each do |product_type|
+    %h3= product_type.name
+    - @menu.products.where({product_type_id: product_type.id}).each do |product|
+      = product.name + ' (' + product.price + ')'
+      %br
+    %br
+
+
+  .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), menus_path, :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_menu_path(@menu), :class => 'btn'
   = link_to t('.destroy', :default => t("helpers.links.destroy")), menu_path(@menu), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'

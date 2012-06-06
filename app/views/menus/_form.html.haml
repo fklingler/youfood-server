@@ -1,4 +1,7 @@
 = simple_form_for @menu, :html => { :class => 'form-horizontal' } do |f|
   = f.input :name
-  = f.input :product_ids, :collection => Product.all, :as => :check_boxes unless Product.empty?
+  %h3= @menu.class.human_attribute_name(:products)
+  - ProductType.all.each do |product_type|
+    %legend= product_type.name
+    = f.input :product_ids, :label => false, :collection => product_type.products,:as => :check_boxes
   = f.button :wrapped, :cancel => menus_path
