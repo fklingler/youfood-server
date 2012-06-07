@@ -6,5 +6,5 @@ class Order
 
   belongs_to :table
   has_and_belongs_to_many :products
-  belongs_to :orderer, polymorphic: true
+  belongs_to :orderer
 end

@@ -1,6 +1,12 @@
 class Device
   include Mongoid::Document
 
-  belongs_to :table
-  has_many :orders, as: :orderer
+  devise :token_authenticatable
+  before_save :ensure_authentication_token
+
+  field :authentication_token
+
+  belongs_to :owner, polymorphic: true
+
+  has_many :orders
 end

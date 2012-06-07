@@ -26,6 +26,7 @@ class Frontoffice::TablesController < Frontoffice::FrontofficeController
 
   def create
     @table = Restaurant.find_by_slug(params[:restaurant_id]).tables.new(params[:table])
+    @table.create_device
 
     if @table.save  
       flash[:notice] = "Successfully created table."  

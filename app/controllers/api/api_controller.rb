@@ -6,4 +6,6 @@ class Api::ApiController < ApplicationController
   def set_default_response_format
     request.format = :json if params[:format].nil?
   end
+
+  before_filter :authenticate_device!
 end

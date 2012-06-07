@@ -6,7 +6,7 @@ class Zone
 
   belongs_to :restaurant
   has_many :tables
-  belongs_to :waiter
+  has_one :waiter
 
   slug :name, :scope => :restaurant
   validates_presence_of :name

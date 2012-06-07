@@ -9,6 +9,10 @@
   %strong= model_class.human_attribute_name(:zone) + ':'
   %br
   = link_to @table.zone.name, frontoffice_restaurant_zone_path(@table.restaurant, @table.zone) if @table.zone
+%p
+  %strong= model_class.human_attribute_name(:api_token) + ':'
+  %br
+  = @table.device.authentication_token if @table.device
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), frontoffice_restaurant_tables_path(@table.restaurant), :class => 'btn'

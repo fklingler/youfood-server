@@ -6,7 +6,7 @@ class Table
 
   belongs_to :restaurant
   belongs_to :zone
-  belongs_to :device
+  has_one :device, :as => :owner
   has_many :orders
 
   slug :number, :scope => :restaurant

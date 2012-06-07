@@ -1,5 +1,6 @@
 Server::Application.routes.draw do
   devise_for :employees
+  devise_for :devices, :only => nil #only auth token
 
   constraints :host => /^(?!api\.)/ do
     namespace :frontoffice, :path => '' do
