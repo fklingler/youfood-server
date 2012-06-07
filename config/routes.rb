@@ -1,17 +1,5 @@
-class ApiDomain
-  def self.matches?(request)
-    request.subdomains(0).first == 'api'
-  end
-end
-
-class FrontofficeDomain
-  def self.matches?(request)
-    request.subdomains(0).first != 'api'
-  end
-end
-
 Server::Application.routes.draw do
-  constraints(FrontofficeDomain) do
+  constraints :host => /^(?!api\.)/ do
     namespace :frontoffice, :path => '' do
       root :to => 'restaurants#index'
 
@@ -26,7 +14,7 @@ Server::Application.routes.draw do
     end
   end
 
-  constraints(ApiDomain) do
+  constraints :hot => /^api\./ do
     namespace :api, :path => '' do
       match 'menu' => 'menu#show'
     end
