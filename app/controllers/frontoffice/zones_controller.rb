@@ -7,7 +7,7 @@ class Frontoffice::ZonesController < Frontoffice::FrontofficeController
   end
 
   def show
-    @zone = Zone.find_by_slug(params[:id])
+    @zone = Restaurant.find_by_slug(params[:restaurant_id]).zones.find_by_slug(params[:id])
 
     respond_with :frontoffice, @zone.restaurant, @zone
   end
@@ -19,7 +19,7 @@ class Frontoffice::ZonesController < Frontoffice::FrontofficeController
   end
 
   def edit
-    @zone = Zone.find_by_slug(params[:id])
+    @zone = Restaurant.find_by_slug(params[:restaurant_id]).zones.find_by_slug(params[:id])
 
     respond_with :frontoffice, @zone.restaurant, @zone
   end
@@ -35,7 +35,7 @@ class Frontoffice::ZonesController < Frontoffice::FrontofficeController
   end
 
   def update
-    @zone = Zone.find_by_slug(params[:id])
+    @zone = Restaurant.find_by_slug(params[:restaurant_id]).zones.find_by_slug(params[:id])
 
     if @zone.update_attributes(params[:zone])
       flash[:notice] = "Successfully updated zone."  
@@ -45,7 +45,7 @@ class Frontoffice::ZonesController < Frontoffice::FrontofficeController
   end
 
   def destroy
-    @zone = Zone.find_by_slug(params[:id])
+    @zone = Restaurant.find_by_slug(params[:restaurant_id]).zones.find_by_slug(params[:id])
     @zone.destroy
 
     flash[:notice] = "Successfully destroyed zone."

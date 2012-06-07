@@ -7,7 +7,7 @@ class Frontoffice::TablesController < Frontoffice::FrontofficeController
   end
 
   def show
-    @table = Table.find_by_slug(params[:id])
+    @table = Restaurant.find_by_slug(params[:restaurant_id]).tables.find_by_slug(params[:id])
 
     respond_with :frontoffice, @table.restaurant, @table
   end
@@ -19,7 +19,7 @@ class Frontoffice::TablesController < Frontoffice::FrontofficeController
   end
 
   def edit
-    @table = Table.find_by_slug(params[:id])
+    @table = Restaurant.find_by_slug(params[:restaurant_id]).tables.find_by_slug(params[:id])
 
     respond_with :frontoffice, @table.restaurant, @table
   end
@@ -36,7 +36,7 @@ class Frontoffice::TablesController < Frontoffice::FrontofficeController
   end
 
   def update
-    @table = Table.find_by_slug(params[:id])
+    @table = Restaurant.find_by_slug(params[:restaurant_id]).tables.find_by_slug(params[:id])
 
     if @table.update_attributes(params[:table])
       flash[:notice] = "Successfully updated table."  
@@ -46,7 +46,7 @@ class Frontoffice::TablesController < Frontoffice::FrontofficeController
   end
 
   def destroy
-    @table = Table.find_by_slug(params[:id])
+    @table = Restaurant.find_by_slug(params[:restaurant_id]).tables.find_by_slug(params[:id])
     @table.destroy
 
     flash[:notice] = "Successfully destroyed table."
