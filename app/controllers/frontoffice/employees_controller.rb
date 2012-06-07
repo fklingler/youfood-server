@@ -45,9 +45,14 @@ class Frontoffice::EmployeesController < Frontoffice::FrontofficeController
 
   def destroy
     @employee = Employee.find_by_slug(params[:id])
-    @employee.destroy
 
-    flash[:notice] = "Successfully destroyed employee."
+    if @employee.is_admin
+      flash[:error] = "Cannot destroy admin employee."
+    else
+      @employee.destroy
+
+      flash[:notice] = "Successfully destroyed employee."
+    end
 
     respond_with :frontoffice, @employee
   end

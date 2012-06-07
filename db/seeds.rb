@@ -20,4 +20,4 @@ table3 = zone1.tables.create(number: 3)
 
 menu = Menu.create(name: 'Test menu')
 
-admin = Employee.create(username: 'admin', password: 'admin', password_confirmation: 'admin')
+admin = Employee.create(username: 'admin', password: 'admin', password_confirmation: 'admin') { |employee| employee.is_admin = true }

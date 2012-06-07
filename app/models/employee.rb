@@ -2,6 +2,8 @@ class Employee
   include Mongoid::Document
   include Mongoid::Slug
 
+  attr_protected :is_admin
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :trackable, :recoverable
   # :lockable, :timeoutable, :omniauthable, :validatable
@@ -38,6 +40,8 @@ class Employee
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  field :is_admin, :type => Boolean, :default => false
 
   slug :username
 end
