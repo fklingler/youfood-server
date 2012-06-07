@@ -43,6 +43,8 @@ gem "mongoid_slug"
 
 gem "acts_as_api"
 
+gem "devise"
+
 group :development do
   gem "debugger"
 end

@@ -18,4 +18,6 @@ table1 = zone1.tables.create(number: 1)
 table2 = zone1.tables.create(number: 2)
 table3 = zone1.tables.create(number: 3)
 
-menu = Menu.create(name: 'Test menu', begin_date: Time.now.to_date, end_date: Time.now.to_date+3)
+menu = Menu.create(name: 'Test menu')
+
+admin = Employee.create(username: 'admin', password: 'admin', password_confirmation: 'admin')

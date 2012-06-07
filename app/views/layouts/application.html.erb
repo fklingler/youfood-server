@@ -22,6 +22,18 @@
           <li><%= link_to "Menus", frontoffice_menus_path %></li>
           <li><%= link_to "Product Types", frontoffice_product_types_path %></li>
           <li><%= link_to "Products", frontoffice_products_path %></li>
+          <li><%= link_to "Employees", frontoffice_employees_path %></li>
+        </ul>
+        <ul class="nav pull-right">
+          <% if employee_signed_in? %>
+            <li>
+            <%= link_to('Logout', destroy_employee_session_path, :method => :delete) %>   
+            </li>
+          <% else %>
+            <li>
+            <%= link_to('Login', new_employee_session_path)  %>  
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>

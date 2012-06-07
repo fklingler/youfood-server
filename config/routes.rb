@@ -1,4 +1,6 @@
 Server::Application.routes.draw do
+  devise_for :employees
+
   constraints :host => /^(?!api\.)/ do
     namespace :frontoffice, :path => '' do
       root :to => 'restaurants#index'
@@ -11,6 +13,8 @@ Server::Application.routes.draw do
       resources :menus
       resources :product_types
       resources :products
+
+      resources :employees
     end
   end
 
