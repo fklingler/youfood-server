@@ -10,7 +10,7 @@ class Product
   has_and_belongs_to_many :orders
 
   slug :name
-  validates_presence_of :name, :price
+  validates :name, :price, presence: true, uniqueness: true
 
   acts_as_api
   api_accessible :public do |t|

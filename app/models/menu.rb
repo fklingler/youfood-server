@@ -8,7 +8,7 @@ class Menu
   has_many :restaurants
 
   slug :name
-  validates_presence_of :name
+  validates :name, presence: true, uniqueness: true
 
   acts_as_api
   api_accessible :public do |t|
