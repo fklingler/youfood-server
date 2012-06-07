@@ -48,12 +48,14 @@ class Frontoffice::EmployeesController < Frontoffice::FrontofficeController
 
     if @employee.is_admin
       flash[:error] = "Cannot destroy admin employee."
+
+      respond_with :frontoffice, @employee, :location => frontoffice_employees_url
     else
       @employee.destroy
 
       flash[:notice] = "Successfully destroyed employee."
-    end
 
-    respond_with :frontoffice, @employee
+      respond_with :frontoffice, @employee
+    end
   end
 end
