@@ -26,9 +26,11 @@ class Frontoffice::ZonesController < Frontoffice::FrontofficeController
 
   def create
     @zone = Restaurant.find_by_slug(params[:restaurant_id]).zones.new(params[:zone])
-    waiter = Waiter.find(params[:zone][:waiter])
 
-    if @zone.save && waiter.update_attributes(zone: @zone)
+    if params[:zone][:waiter]
+      Waiter.find(params[:zone][:waiter]).update_attributes(zone: @zone)
+    end
+    if @zone.save
       flash[:notice] = "Successfully created zone."  
     end 
 
@@ -37,9 +39,11 @@ class Frontoffice::ZonesController < Frontoffice::FrontofficeController
 
   def update
     @zone = Restaurant.find_by_slug(params[:restaurant_id]).zones.find_by_slug(params[:id])
-    waiter = Waiter.find(params[:zone][:waiter])
 
-    if @zone.update_attributes(params[:zone]) && waiter.update_attributes(zone: @zone)
+    if params[:zone][:waiter]
+      Waiter.find(params[:zone][:waiter]).update_attributes(zone: @zone)
+    end
+    if @zone.update_attributes(params[:zone])
       flash[:notice] = "Successfully updated zone."  
     end
 

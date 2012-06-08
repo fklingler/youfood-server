@@ -27,9 +27,11 @@ class Frontoffice::WaitersController < Frontoffice::FrontofficeController
   def create
     @waiter = Restaurant.find_by_slug(params[:restaurant_id]).waiters.new(params[:waiter])
     @waiter.create_device
-    zone = Zone.find(params[:waiter][:zone])
 
-    if @waiter.save && zone.update_attributes(waiter: @waiter)
+    if params[:waiter][:zone]
+      Zone.find(params[:waiter][:zone]).update_attributes(waiter: @waiter)
+    end
+    if @waiter.save
       flash[:notice] = "Successfully created waiter."  
     end 
 
@@ -38,9 +40,11 @@ class Frontoffice::WaitersController < Frontoffice::FrontofficeController
 
   def update
     @waiter = Restaurant.find_by_slug(params[:restaurant_id]).waiters.find_by_slug(params[:id])
-    zone = Zone.find(params[:waiter][:zone])
 
-    if @waiter.update_attributes(params[:waiter]) && zone.update_attributes(waiter: @waiter)
+    if params[:waiter][:zone]
+      Zone.find(params[:waiter][:zone]).update_attributes(waiter: @waiter)
+    end
+    if @waiter.update_attributes(params[:waiter])
       flash[:notice] = "Successfully updated waiter."  
     end
 
