@@ -9,6 +9,7 @@ Server::Application.routes.draw do
       resources :restaurants do
         resources :zones
         resources :tables
+        resources :waiters
       end
 
       resources :menus
@@ -21,7 +22,7 @@ Server::Application.routes.draw do
 
   constraints :hot => /^api\./ do
     namespace :api, :path => '' do
-      match 'menu' => 'menu#show'
+      match 'restaurant' => 'restaurant#show'
     end
   end
 end

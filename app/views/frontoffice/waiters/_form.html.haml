@@ -1,0 +1,5 @@
+= simple_form_for [:frontoffice, @waiter.restaurant, @waiter], :html => { :class => 'form-horizontal' } do |f|
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :zone, :collection => @waiter.restaurant.zones, :selected => (@waiter.zone.id if @waiter.zone) unless @waiter.restaurant.zones.empty?
+  = f.button :wrapped, :cancel => frontoffice_restaurant_tables_path(@waiter.restaurant)

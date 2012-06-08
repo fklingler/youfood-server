@@ -2,13 +2,12 @@ class Waiter
   include Mongoid::Document
   include Mongoid::Slug
 
-  devise :token_authenticatable
-
   field :first_name
   field :last_name
 
+  belongs_to :restaurant
   belongs_to :zone
-  has_one :device, :as => :owner
+  has_one :device, :as => :owner, :dependent => :delete
 
   slug :full_name
 

@@ -7,6 +7,7 @@
       %th= model_class.human_attribute_name(:address)
       %th= model_class.human_attribute_name(:zones)
       %th= model_class.human_attribute_name(:tables)
+      %th= model_class.human_attribute_name(:waiters)
       %th= model_class.human_attribute_name(:menu)
       %th= model_class.human_attribute_name(:menu_begin_date)
       %th= model_class.human_attribute_name(:menu_end_date)
@@ -18,6 +19,7 @@
         %td= restaurant.address
         %td= link_to 'Zones', frontoffice_restaurant_zones_path(restaurant)
         %td= link_to 'Tables', frontoffice_restaurant_tables_path(restaurant)
+        %td= link_to 'Waiters', frontoffice_restaurant_waiters_path(restaurant)
         %td= link_to restaurant.menu.name, frontoffice_menu_path(restaurant.menu) if restaurant.menu
         %td= restaurant.menu_begin_date
         %td= restaurant.menu_end_date

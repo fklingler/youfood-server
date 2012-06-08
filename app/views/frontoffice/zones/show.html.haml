@@ -6,6 +6,11 @@
   %br
   = @zone.name
 
+%p
+  %strong= model_class.human_attribute_name(:waiter) + ':'
+  %br
+  = link_to @zone.waiter.full_name, frontoffice_restaurant_waiter_path(@zone.restaurant, @zone.waiter) if @zone.waiter
+
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), frontoffice_restaurant_zones_path(@zone.restaurant), :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_frontoffice_restaurant_zone_path(@zone.restaurant, @zone), :class => 'btn'
