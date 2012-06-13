@@ -18,8 +18,6 @@ class Restaurant
 
   acts_as_api
   api_accessible :public do |t|
-    t.add :name
-    t.add :address
     t.add :menu_begin_date
     t.add :menu_end_date
     t.add :menu
