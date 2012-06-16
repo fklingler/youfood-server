@@ -22,7 +22,8 @@ Server::Application.routes.draw do
 
   constraints :hot => /^api\./ do
     namespace :api, :path => '' do
-      match 'restaurant' => 'restaurant#show'
+      match 'restaurant' => 'restaurant#show', :via => :get
+      match 'order' => 'order#create', :via => :post
     end
   end
 end

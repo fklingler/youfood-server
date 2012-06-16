@@ -7,13 +7,13 @@ class Product
 
   belongs_to :product_type
   has_and_belongs_to_many :menus
-  has_and_belongs_to_many :orders
 
   slug :name
   validates :name, :price, presence: true, uniqueness: true
 
   acts_as_api
   api_accessible :public do |t|
+    t.add :_id, :as => :id
     t.add :name
     t.add :price
     t.add :product_type_name, :as => :product_type
