@@ -1,6 +1,4 @@
 class Frontoffice::MenusController < Frontoffice::FrontofficeController
-  before_filter :authenticate_employee!
-
   def index
     @menus = Menu.all
 

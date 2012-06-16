@@ -1,5 +1,6 @@
 class Order
   include Mongoid::Document
+  include Mongoid::Timestamps::Created
 
   field :delivered, type: Boolean, default: false
   field :paid, type: Boolean, default: false

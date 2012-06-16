@@ -1,0 +1,40 @@
+%h1 Monitoring
+
+%form.well.form-horizontal.monitoring{:method => 'get'}
+  .control-group
+    %label.control-label{:for => 'restaurant'} Restaurant
+    .controls
+      %select#restaurant{:name => 'restaurant'}
+        %option{:value => ''} All
+        - Restaurant.all.each do |restaurant|
+          %option{:value => restaurant.slug, :selected => (params[:restaurant] && restaurant.slug == params[:restaurant])}
+            = restaurant.name
+  .control-group
+    %label.control-label{:for => 'product_type'} Product Type
+    .controls
+      %select#product_type{:name => 'product_type'}
+        %option{:value => ''} All
+        - ProductType.all.each do |product_type|
+          %option{:value => product_type.slug, :selected => (params[:product_type] && product_type.slug == params[:product_type])}
+            = product_type.name
+  .control-group
+    %label.control-label.inline{:for => 'display'} Display count of
+    .controls
+      %label.radio.inline
+        %input#display_orders{:type => 'radio', :name => 'display', :value => 'orders', :checked => (!params[:display] || params[:display] == 'orders')} orders
+      %label.radio.inline
+        %input#display_products{:type => 'radio', :name  => 'display', :value => 'products', :checked => (params[:display] && params[:display] == 'products')} products
+  %button.btn.btn-primary{:type => 'submit'} Filter
+
+
+%table.table.table-striped
+  %thead
+    %tr
+      - last_months(6) do |date_month|
+        %th= date_month.strftime('%B %Y')
+      %th Total
+  %tbody
+    %tr
+      - last_months(6) do |date_month|
+        %td= count_between_dates(@orders, date_month.at_beginning_of_month..date_month.at_end_of_month)
+      %td= total_count(@orders)

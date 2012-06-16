@@ -17,6 +17,8 @@ Server::Application.routes.draw do
       resources :products
 
       resources :employees
+
+      match 'monitoring' => 'monitoring#index'
     end
   end
 
