@@ -25,6 +25,8 @@ Server::Application.routes.draw do
       match 'restaurant' => 'restaurant#show', :via => :get
 
       resources :orders, :only => [:index, :create]
+
+      match 'register' => 'device#register', :via => :post
     end
   end
 end
