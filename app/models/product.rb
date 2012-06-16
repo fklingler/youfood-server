@@ -9,7 +9,8 @@ class Product
   has_and_belongs_to_many :menus
 
   slug :name
-  validates :name, :price, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
+  validates_presence_of :price
 
   acts_as_api
   api_accessible :public do |t|
