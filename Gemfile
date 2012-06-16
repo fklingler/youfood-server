@@ -45,6 +45,9 @@ gem "acts_as_api"
 
 gem "devise"
 
+gem 'delayed_job_mongoid'
+gem 'speedy_c2dm'
+
 group :development do
   gem "debugger"
 end
