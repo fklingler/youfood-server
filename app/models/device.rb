@@ -5,6 +5,7 @@ class Device
   before_save :ensure_authentication_token
 
   field :authentication_token
+  field :registration_id
 
   belongs_to :owner, polymorphic: true
 
