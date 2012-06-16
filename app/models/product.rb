@@ -3,14 +3,14 @@ class Product
   include Mongoid::Slug
 
   field :name
-  field :price
+  field :price, type: Float
 
   belongs_to :product_type
   has_and_belongs_to_many :menus
 
   slug :name
   validates :name, presence: true, uniqueness: true
-  validates_presence_of :price
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0}
 
   acts_as_api
   api_accessible :public do |t|
