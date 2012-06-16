@@ -31,7 +31,9 @@ class Api::OrdersController < Api::ApiController
 
       if current_device.owner_type == 'Table' && current_device.owner.zone && current_device.owner.zone.waiter && current_device.owner.zone.waiter.device.registration_id
 
-        send_c2dm_notification
+        send_c2dm_notification(:registration_id => current_device.owner.zone.waiter.device.registration_id,
+                               :collapse_key    => "order",
+                               :table           => current_device.owner.number)
       end
     else
       status = 500
@@ -41,7 +43,10 @@ class Api::OrdersController < Api::ApiController
   end
 
   protected
-  def send_c2dm_notification
-    logger.debug "send c2dm notification"
+  def send_c2dm_notification(options = {})
+    require "net/http"
+    require "net/https"
+
+    SpeedyC2DM::API.send_notification(options)
   end
 end

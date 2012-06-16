@@ -3,7 +3,7 @@ class Api::DeviceController < Api::ApiController
     current_device.registration_id = params[:registration_id]
 
     if current_device.save
-      status = 201
+      status = 200
     else
       status = 500
     end
