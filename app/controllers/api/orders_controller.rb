@@ -2,6 +2,7 @@ class Api::OrdersController < Api::ApiController
   def index
     unless current_device.owner_type == 'Waiter' && current_device.owner.zone
       render :nothing => true, :status => 401
+      return
     end
 
     logger.debug current_device.owner.zone.tables.to_json
