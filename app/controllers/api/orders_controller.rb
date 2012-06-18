@@ -21,7 +21,11 @@ class Api::OrdersController < Api::ApiController
 
     @order.device = current_device
 
-    @order.table = @restaurant.tables.where(:number => params[:order][:table]).first
+    if current_device.owner_type == 'Table'
+      @order.table = current_device.owner
+    else
+      @order.table = @restaurant.tables.where(:number => params[:order][:table]).first
+    end
 
     params[:order][:order_items].each do |order_item|
       @order.order_items.create(quantity: order_item[:quantity], product: Product.find(order_item[:product]))
