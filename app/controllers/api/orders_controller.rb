@@ -1,10 +1,5 @@
 class Api::OrdersController < Api::ApiController
   def index
-    unless current_device.owner_type == 'Waiter' && current_device.owner.zone
-      render :nothing => true, :status => 401
-      return
-    end
-
     @orders = Order.all
 
     if current_device.owner_type == 'Waiter'
@@ -14,7 +9,7 @@ class Api::OrdersController < Api::ApiController
       @orders = @orders.where(:table_id => current_device.owner.id)
       @orders = @orders.where(:paid => false)
     end
-    
+
     respond_with :api, @orders, :api_template => :public
   end
 
