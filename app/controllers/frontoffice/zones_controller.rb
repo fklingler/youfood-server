@@ -42,6 +42,7 @@ class Frontoffice::ZonesController < Frontoffice::FrontofficeController
 
     if params[:zone][:waiter]
       Waiter.find(params[:zone][:waiter]).update_attributes(zone: @zone)
+      params[:zone].delete(:waiter)
     end
     if @zone.update_attributes(params[:zone])
       flash[:notice] = "Successfully updated zone."  
