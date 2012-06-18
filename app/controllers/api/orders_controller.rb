@@ -2,12 +2,12 @@ class Api::OrdersController < Api::ApiController
   def index
     @orders = Order.all
 
-    if current_device.owner_type == 'Waiter'
-      @orders = @orders.where(:table_id.in => current_device.owner.zone.tables.map(&:id))
-      @orders = @orders.or({:delivered => false}, {:paid => false})
-    elsif current_device.owner_type == 'Table'
+    if current_device.owner_type == 'Table'
       @orders = @orders.where(:table_id => current_device.owner.id)
       @orders = @orders.where(:paid => false)
+    else
+      @orders = @orders.where(:table_id.in => current_device.owner.zone.tables.map(&:id))
+      @orders = @orders.or({:delivered => false}, {:paid => false})
     end
 
     respond_with :api, @orders, :api_template => :public
@@ -35,7 +35,7 @@ class Api::OrdersController < Api::ApiController
     if current_device.owner_type == 'Table'
       @order.table = current_device.owner
     else
-      @order.table = @restaurant.tables.where(:number => params[:order][:table]).first
+      @order.table = current_device.owner.zone.tables.where(:number => params[:order][:table]).first
     end
 
     params[:order][:order_items].each do |order_item|
