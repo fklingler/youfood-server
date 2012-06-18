@@ -10,7 +10,7 @@ class Table
   has_many :orders
 
   slug :number, :scope => :restaurant
-  validates_presence_of :number
+  validates :number, presence: true, uniqueness: true
 
   acts_as_api
   api_accessible :public do |t|
