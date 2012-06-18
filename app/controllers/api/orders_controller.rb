@@ -35,14 +35,17 @@ class Api::OrdersController < Api::ApiController
     if current_device.owner_type == 'Table'
       @order.table = current_device.owner
     else
-      @order.table = current_device.owner.zone.tables.where(:number => params[:order][:table]).first
+      unless @order.table = current_device.owner.zone.tables.where(:number => params[:order][:table]).first
+        render :nothing => true, :status => 501
+        return
+      end
     end
 
     params[:order][:order_items].each do |order_item|
       @order.order_items.create(quantity: order_item[:quantity], product: Product.find(order_item[:product]))
     end
 
-    if @order.save
+    if @order.table && @order.save
       status = 201
 
       if current_device.owner_type == 'Table' && current_device.owner.zone && current_device.owner.zone.waiter && current_device.owner.zone.waiter.device.registration_id
