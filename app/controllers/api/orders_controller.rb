@@ -36,7 +36,7 @@ class Api::OrdersController < Api::ApiController
       @order.table = current_device.owner
     else
       unless @order.table = current_device.owner.zone.tables.where(:number => params[:order][:table]).first
-        render :nothing => true, :status => 501
+        render :nothing => true, :status => 500
         return
       end
     end
