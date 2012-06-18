@@ -14,6 +14,8 @@ class Order
   api_accessible :public do |t|
     t.add :table_number, :as => :table
     t.add :order_items
+    t.add :delivered
+    t.add :paid
   end
 
   def table_number

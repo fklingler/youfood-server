@@ -9,7 +9,7 @@ class Api::OrdersController < Api::ApiController
 
     @orders = Order.all
     @orders = @orders.where(:table_id.in => current_device.owner.zone.tables.map(&:id))
-    @orders = @orders.where(:delivered => false, :paid => false)
+    @orders = @orders.or({:delivered => false}, {:paid => false})
 
     respond_with :api, @orders, :api_template => :public
   end
