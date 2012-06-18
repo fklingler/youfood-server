@@ -26,7 +26,7 @@ Server::Application.routes.draw do
     namespace :api, :path => '' do
       match 'restaurant' => 'restaurant#show', :via => :get
 
-      resources :orders, :only => [:index, :create]
+      resources :orders, :only => [:index, :create, :update]
 
       match 'register' => 'device#register', :via => :post
     end

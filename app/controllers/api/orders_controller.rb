@@ -14,6 +14,18 @@ class Api::OrdersController < Api::ApiController
     respond_with :api, @orders, :api_template => :public
   end
 
+  def update
+    @order = Order.find(params[:id])
+
+    if @order.update_attributes(params[:order])
+      status = 200
+    else
+      status = 500
+    end
+
+    render :nothing => true, :status => status
+  end
+
   def create
     @restaurant = current_device.owner.restaurant
     

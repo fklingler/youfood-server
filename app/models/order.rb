@@ -12,6 +12,7 @@ class Order
 
   acts_as_api
   api_accessible :public do |t|
+    t.add :_id, :as => :id
     t.add :table_number, :as => :table
     t.add :order_items
     t.add :delivered
