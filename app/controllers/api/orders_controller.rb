@@ -5,12 +5,16 @@ class Api::OrdersController < Api::ApiController
       return
     end
 
-    logger.debug current_device.owner.zone.tables.to_json
-
     @orders = Order.all
-    @orders = @orders.where(:table_id.in => current_device.owner.zone.tables.map(&:id))
-    @orders = @orders.or({:delivered => false}, {:paid => false})
 
+    if current_device.owner_type == 'Waiter'
+      @orders = @orders.where(:table_id.in => current_device.owner.zone.tables.map(&:id))
+      @orders = @orders.or({:delivered => false}, {:paid => false})
+    elsif current_device.owner_type == 'Table'
+      @orders = @orders.where(:table_id => current_device.owner.id)
+      @orders = @orders.where(:paid => false)
+    end
+    
     respond_with :api, @orders, :api_template => :public
   end
 
